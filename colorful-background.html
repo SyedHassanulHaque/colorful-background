@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Linear Gradient </title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #main {
+            background: linear-gradient(45deg, red, yellow, green, orange, blue);
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all;
+            transition-duration: 500ms;
+            transition-timing-function: ease-in-out;
+            
+        }
+
+        #btn {
+            display: block;
+            margin: 20px;
+            padding: 8px;
+            font-family: cursive;
+            font-weight: bold;
+            font-size: 20px;
+            width: 150px;
+            border: 2px;
+            border-style: inset;
+            color:burlywood;
+            background: transparent;
+            transition: all;
+            transition-duration: 1s;
+            transition-timing-function: ease-in-out;
+
+        }
+
+        #btn:hover {
+            cursor: pointer;
+            border-color: rgb(238, 232, 238);
+            background-color: rgba(30, 28, 202, 0.267);
+            
+            
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <button id="btn">Start</button>
+    </div>
+
+    <script>
+
+        let x, y, z;
+        let main = document.getElementById('main');
+
+        //Color generating function
+        function color() {
+
+            x = Math.floor(Math.random() * 225);
+            y = Math.floor(Math.random() * 225);
+            z = Math.floor(Math.random() * 225);
+            //main.style.background=`rgb(${x},${y},${z})`;
+            let col;
+            col = "rgb(" + x + "," + y + "," + z + ")";
+            return col;
+        }
+        //Angle generating function
+        function deg() {
+            d = Math.floor(Math.random() * 100);
+            return d;
+        }
+
+        function play() {
+            col1 = color();
+            col2 = color();
+            col3 = color();
+            col4 = color();
+            col5 = color();
+            d = deg();
+            main.style.background = "linear-gradient(" + d + "deg," + col1 + "," + col2 + "," + col3 + " ," + col4 + "," + col5 + ")";
+            
+        }
+
+        var ti;
+        var t = 1000;
+        var btn = document.getElementById('btn');
+
+
+        btn.addEventListener('click',
+            function click() {
+                if (btn.innerHTML == "Start") {
+                    btn.style.filter = "opacity(00)";
+                    btn.style.width = "50vw";
+                    btn.style.height = "50vw";
+                    btn.innerHTML = "Stop";
+                    ti = setInterval(play, t);
+                }
+                
+                else if (btn.innerHTML == "Stop") {
+                    btn.innerHTML = "Start";
+
+                    clearInterval(ti);
+                }
+
+            }
+        )
+    </script>
+</body>
+
+</html>
